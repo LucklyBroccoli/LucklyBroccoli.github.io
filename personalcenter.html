@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"> <!-- 设置字符编码为UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 设置视口宽度以及初始缩放比例 -->
+    <title>登录/注册</title> <!-- 设置页面标题为"登录/注册" -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- 导入Font Awesome图标库的CSS文件 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* 设置字体为Arial和无衬线字体 */
+            background-color: #fdeff2; /* 设置背景颜色为淡粉色 */
+            padding: 20px; /* 设置内边距为20像素 */
+        }
+
+        .container {
+            max-width: 500px; /* 设置容器最大宽度为500像素 */
+            margin: 0 auto; /* 设置容器水平居中对齐 */
+            background-color: #fff; /* 设置容器背景颜色为白色 */
+            padding: 20px; /* 设置容器内边距为20像素 */
+            border-radius: 10px; /* 设置容器圆角边框为10像素 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 设置容器阴影效果 */
+            margin-top: 30px;
+            position: relative;
+        }
+       
+.container::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid white;
+  border-radius: 5px;
+  animation: rainbow-border 4s infinite;
+  z-index: -1;
+}
+
+@keyframes rainbow-border {
+  0% { border-color: red; }
+  14% { border-color: orange; }
+  28% { border-color: yellow; }
+  43% { border-color: green; }
+  57% { border-color: blue; }
+  71% { border-color: indigo; }
+  85% { border-color: violet; }
+  100% { border-color: red; }
+}
+
+/* 添加动画效果 */
+@keyframes rainbow-text {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    43% { color: green; }
+    57% { color: blue; }
+    71% { color: indigo; }
+    85% { color: violet; }
+    100% { color: red; }
+}
+
+/* 鼠标悬停时触发动画效果 */
+.register-link:hover {
+    animation: rainbow-text 4s infinite;
+}
+
+
+        .header {
+            text-align: center; /* 设置文本居中对齐 */
+            margin-bottom: 20px; /* 设置下边距为20像素 */
+        }
+
+        .form-group {
+            margin-bottom: 10px; /* 设置下边距为10像素 */
+        }
+
+        .form-label {
+            font-size: 16px; /* 设置字体大小为16像素 */
+            font-weight: bold; /* 设置字体加粗 */
+            color: #f06292; /* 设置文本颜色为粉色 */
+        }
+
+        .form-input {
+            display: block; /* 设置元素以块级显示（独占一行） */
+    	    width: calc(100% - 20px);/*输入框两边距离白色框各为10像素*/
+            padding: 10px; /* 设置内边距为10像素 */
+            border-radius: 5px; /* 设置圆角边框为5像素 */
+            border: 1px solid #ddd; /* 设置边框为1像素实线，并使用灰色 */
+            font-size: 14px; /* 设置字体大小为14像素 */
+            position: static; /* 设置默认值 */
+            background-color: #fff; /* 设置背景颜色为白色 */
+            transition: border-color 0.3s ease; /* 设置过渡效果，用于鼠标悬停时改变边框颜色 */
+    	    margin-top: 10px;
+    	    margin-bottom: 10px;
+    	    margin-right: 50px; /* 向左移动50像素 */
+        }
+
+        .form-input:hover::after {
+            content: ""; /* 使用伪元素创建一个装饰性元素 */
+            position: absolute; /* 设置绝对定位 */
+            top: 50%; /* 设置距离顶部50%的位置 */
+            left: 50%; /* 设置距离左侧50%的位置 */
+            transform: translate(-50%, -50%); /* 将装饰元素水平垂直居中 */
+            width: 20px; /* 设置宽度为20像素 */
+            height: 20px; /* 设置高度为20像素 */
+            background-color: #ff80ab; /* 设置装饰元素背景颜色为淡粉色 */
+            border-radius: 50%; /* 设置装饰元素为圆形 */
+        }
+
+        .form-input:focus {
+            outline: none; /* 移除表单输入框的默认聚焦样式 */
+            border-color: #f06292; /* 设置表单输入框获得焦点时的边框颜色为粉色 */
+        }
+
+        .form-icon {
+            position: absolute; /* 设置绝对定位 */
+            top: 50%; /* 设置距离顶部50%的位置 */
+            right: 10px; /* 设置距离右侧10像素的位置 */
+            transform: translateY(-50%); /* 将图标垂直居中 */
+            color: #f06292; /* 设置图标颜色为粉色 */
+        }
+
+        .form-button {
+            display: block; /* 设置元素以块级显示（独占一行） */
+            width: 100%; /* 设置宽度为100% */
+            padding: 10px; /* 设置内边距为10像素 */
+            background-color: #f06292; /* 设置背景颜色为粉色 */
+            color: #fff; /* 设置文本颜色为白色 */
+            font-weight: bold; /* 设置字体加粗 */
+            border-radius: 5px; /* 设置圆角边框为5像素 */
+            border: none; /* 移除边框 */
+            font-size: 16px; /* 设置字体大小为16像素 */
+            text-align: center; /* 设置文本居中对齐 */
+            cursor: pointer; /* 设置鼠标悬停时的光标样式为手型 */
+            transition: background-color 0.3s ease; /* 设置过渡效果，用于鼠标悬停时改变背景颜色 */
+            margin-top: 20px;
+        }
+
+        .form-button:hover {
+            background-color: #ff80ab; /* 设置鼠标悬停时的背景颜色为淡粉色 */
+        }
+        
+        .toggle-form {
+            text-align: center; /* 设置文本居中对齐 */
+            margin-top: 20px; /* 设置上边距为20像素 */
+        }
+       
+        
+    .toggle-form a {
+        color: #f06292; /* 设置链接文本颜色为粉色 */
+        text-decoration: none; /* 移除链接的下划线样式 */
+    }
+    
+    .decorative-element {
+        position: absolute; /* 设置绝对定位 */
+        font-size: 24px; /* 设置字体大小为24像素 */
+        color: #f06292; /* 设置文本颜色为粉色 */
+    }
+    
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1 style="color: #f06292;">登录/注册</h1> <!-- 设置标题文本颜色为粉色 -->
+    </div>
+    
+    <!-- 登录表单 -->
+    <form id="login-form" class="form-group">
+        <div>
+            <label class="form-label" for="login-username">用户名：</label> <!-- 用户名标签 -->
+            <input type="text" id="login-username" class="form-input" required> <!-- 用户名输入框 -->
+        </div>
+        
+        <div>
+            <label class="form-label" for="login-password">密码：</label> <!-- 密码标签 -->
+            <input type="password" id="login-password" class="form-input" required> <!-- 密码输入框 -->
+        </div>
+        
+        <button type="submit" class="form-button">登录</button> <!-- 登录按钮 -->
+        
+<!-- 注册提示和链接 -->
+<div class="toggle-form">
+    还没有账号？<a href="#" onclick="toggle()" class="register-link">点击注册</a>
+</div>
+
+    </form>
+
+        
+<!-- 注册表单 -->
+<form id="register-form" class="form-group" style="display: none;"> <!-- 设置表单为隐藏状态 -->
+    <div>
+        <label class="form-label" for="register-username">用户名：</label> <!-- 用户名标签 -->
+        <input type="text" id="register-username" class="form-input" required> <!-- 用户名输入框 -->
+    </div>
+    
+    <div>
+        <label class="form-label" for="register-password">密码：</label> <!-- 密码标签 -->
+        <input type="password" id="register-password" class="form-input" required> <!-- 密码输入框 -->
+    </div>
+    
+    <div>
+        <label class="form-label" for="confirm-password">确认密码：</label> <!-- 确认密码标签 -->
+        <input type="password" id="confirm-password" class="form-input" required> <!-- 确认密码输入框 -->
+    </div>
+
+            
+<div>
+    <label class="form-label" for="phone-number">手机号：</label> <!-- 手机号标签 -->
+    <input type="tel" id="phone-number" class="form-input" required> <!-- 手机号输入框 -->
+</div>
+
+<div>
+    <label class="form-label" for="verification-code">验证码：</label> <!-- 验证码标签 -->
+    <input type="text" id="verification-code" class="form-input" required> <!-- 验证码输入框 -->
+</div>
+
+<button type="submit" class="form-button">注册</button> <!-- 注册按钮 -->
+
+<div class="toggle-form">
+    已有账号？<a href="#" onclick="toggle()" class="register-link">点击登录</a> <!-- 登录提示和链接 -->
+</div>
+</form>
+
+    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script> <!-- 引入 Font Awesome 图标库的 JavaScript 文件 -->
+
+<script>
+    function toggle() {
+        var loginForm = document.getElementById('login-form'); // 获取登录表单元素
+        var registerForm = document.getElementById('register-form'); // 获取注册表单元素
+
+        if (loginForm.style.display === 'none') {
+            loginForm.style.display = 'block'; // 如果登录表单隐藏，则显示登录表单
+            registerForm.style.display = 'none'; // 同时隐藏注册表单
+        } else {
+            loginForm.style.display = 'none'; // 如果登录表单显示，则隐藏登录表单
+            registerForm.style.display = 'block'; // 同时显示注册表单
+        }
+    }
+</script>
+
+</body>
+</html>
+
+

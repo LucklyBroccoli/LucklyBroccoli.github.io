@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️🌸 旅游网站 🌸❤️</title>
+
+<style>
+    /* CSS 样式 */
+    /* 设置页面样式 */
+    body {
+        background-color: #ffe0f2; /* 页面背景色 */
+        font-family: "Arial", sans-serif; /* 字体样式 */
+        margin: 0; /* 设置页面外边距为0 */
+        padding: 0; /* 设置页面内边距为0 */
+        background-color: #fcefff; /* 页面背景色 */
+    }
+   
+    /* 设置header样式 */
+    header {
+        height: 200px; /* 调整header元素的高度 */
+        overflow: hidden; /* 隐藏溢出部分 */
+    }
+    
+    /* 设置logo样式 */
+    .logo {
+        width: 100%; /* 设置宽度为100% */
+        height: 100%; /* 设置高度为100% */
+        object-fit: cover; /* 按比例裁剪图片 */
+    }
+    
+    /* 设置rainbow动画 */
+    @keyframes rainbow {
+        0% { border-color: #ff69b4; }
+        25% { border-color: #ff654f; }
+        50% { border-color: #ffd100; }
+        75% { border-color: #7cff00; }
+        100% { border-color: #00ffff; }
+    }
+    
+    /* 设置导航菜单链接样式 */
+    nav li a:hover {
+        color: #ff69b4; /* 菜单链接悬停时颜色 */
+        font-size: 22px; /* 菜单链接悬停时字体大小 */
+        border-bottom: 2px solid #ff69b4; /* 菜单链接悬停时添加底边框 */
+        animation: rainbow 1s infinite; /* 菜单链接悬停时添加彩虹边框动画 */
+    }
+    
+    /* 设置导航栏样式 */
+    nav {
+        background-color: #ffe6f4; /* 导航栏背景色 */
+        padding: 10px; /* 导航栏内边距为10像素 */
+        border-radius: 10px; /* 添加圆角边框 */
+
+    }
+    
+    /* 设置导航菜单样式 */
+    nav ul {
+        list-style-type: none; /* 去除默认列表样式 */
+        margin: 0; /* 设置外边距为0 */
+        padding: 0; /* 设置内边距为0 */
+        display: flex; /* 使用弹性盒子布局 */
+        flex-wrap: wrap; /* 将菜单项分成两行 */
+        justify-content: center; /* 水平居中对齐菜单项 */
+        box-shadow: 0px 8px 16px 0px rgba(0.1, 0.2, 0.3, 0.5); /* 添加阴影效果 */
+        border-radius: 20px; /* 添加圆角边框 */
+    }
+    
+    /* 设置导航菜单项样式 */
+    nav li {
+        flex-basis: 20%; /* 设置每个菜单项占据一行的整个宽度 */
+    }
+    
+    /* 设置导航菜单链接样式 */
+    nav li a {
+        color: #ff69b4; /* 链接文字颜色 */
+        text-decoration: none; /* 去除下划线装饰 */
+        font-size: 22px; /* 字体大小 */
+        font-weight: bold; /* 字体粗细 */
+        padding: 5px; /* 内边距为10像素 */
+        transition: color 0.3s ease-in-out; /* 添加颜色过渡效果 */
+        display: block; /* 设置菜单项为块级元素以占据一整行 */
+        text-align: center; /* 居中显示菜单项文本 */
+        border: 2px solid #ffdbe6; /* 添加边框 */
+        border-radius: 20px; /* 添加圆角边框 */
+    }
+    
+    /* 设置导航菜单链接鼠标悬停样式 */
+    nav li a:hover {
+        color: #ff69b4; /* 鼠标悬停时菜单链接字体颜色 */
+        background-color: #ffdef2; /* 鼠标悬停时菜单背景色 */
+    }
+
+
+
+
+    
+    /* 设置下拉菜单容器样式 */
+    .dropdown {
+        position: relative; /* 相对定位 */
+        display: inline-block; /* 行内块级元素，使下拉菜单水平排列 */
+    }
+    
+    /* 设置下拉菜单内容样式 */
+    .dropdown-content {
+        display: none; /* 初始隐藏下拉菜单内容 */
+        position: absolute; /* 设置绝对定位 */
+    	margin-top: 5px;
+        background-color: #ffcfea; /* 背景颜色为淡粉色 */
+        min-width: 200px; /* 最小宽度为200像素 */
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0.2, 0.5); /* 添加阴影效果 */
+        z-index: 1; /* 设置堆叠顺序为最上层 */
+        border-radius: 20px; /* 添加圆角边框 */
+    }
+    
+    /* 设置下拉菜单链接样式 */
+    .dropdown-content a {
+        color: #ff69b4; /* 链接文字颜色为亮粉色 */
+        text-decoration: none; /* 去除下划线装饰 */
+        display: block; /* 块级元素，使链接垂直排列 */
+        padding: 5px; /* 设置链接内边距为5像素 */
+        text-align: center; /* 居中 */
+
+    }
+    
+    /* 设置下拉菜单链接鼠标悬停样式 */
+    .dropdown-content a:hover {
+        background-color: #ffdbe6; /* 鼠标悬停时背景颜色为浅粉色 */
+    }
+    
+    /* 设置鼠标悬停在下拉菜单容器时显示下拉菜单内容 */
+    .dropdown:hover .dropdown-content {
+        display: block; /* 鼠标悬停时显示下拉菜单内容 */
+    }
+
+
+    
+    /* 设置轮播图容器样式 */
+    .carousel {
+        position: relative; /* 相对定位 */
+        width: 100%; /* 宽度占满父容器 */
+        height: 400px; /* 高度为400像素 */
+        overflow: hidden; /* 溢出内容隐藏 */
+    }
+    
+    /* 设置轮播图中的图片样式 */
+    .carousel img {
+        position: absolute; /* 绝对定位 */
+        width: 100%; /* 宽度占满父容器 */
+        height: auto; /* 高度按比例自适应 */
+        object-fit: cover; /* 图片按比例缩放，覆盖容器 */
+        opacity: 0; /* 初始透明度为0，隐藏图片 */
+        transition: opacity 1s ease-in-out; /* 动画过渡效果，透明度变化时需要1秒 */
+    }
+    
+    /* 设置当前显示图片的样式 */
+    .carousel img.active {
+        opacity: 1; /* 透明度设为1，显示图片 */
+    }
+
+
+
+    .video-recommendation {
+        text-align: center; /* 文本居中对齐 */
+        margin-top: 30px; /* 上边距为30像素 */
+    }
+    
+    .video-recommendation h2 {
+        font-size: 24px; /* 标题字体大小为24像素 */
+        color: #ff69b4; /* 标题颜色为粉色 */
+    }
+    
+    .video-recommendation p {
+        font-size: 18px; /* 段落字体大小为18像素 */
+    }
+    
+    .video-recommendation .video-container {
+        display: flex; /* 使用弹性布局 */
+        justify-content: center; /* 子元素水平居中对齐 */
+        align-items: flex-start; /* 子元素垂直顶部对齐 */
+        flex-wrap: wrap; /* 如果子元素超出容器宽度，则换行显示 */
+    }
+    
+    .video-recommendation .video-item {
+        width: 300px; /* 视频项宽度为300像素 */
+        margin: 20px; /* 视频项外边距为20像素 */
+        text-align: center; /* 内容居中对齐 */
+        transition: transform 0.3s ease-in-out; /* 动画过渡效果 */
+    }
+    
+    .video-recommendation .video-item:hover {
+        transform: scale(1.1); /* 鼠标悬停时放大1.1倍 */
+    }
+    
+    .video-recommendation .video-item a {
+        color: #ff69b4; /* 链接颜色为粉色 */
+        text-decoration: none; /* 去除链接下划线 */
+        display: block; /* 将链接设置为块级元素 */
+        margin-bottom: 10px; /* 底边距为10像素 */
+        font-size: 20px; /* 链接字体大小为20像素 */
+    }
+    
+    .video-recommendation .video-item img {
+        width: 100%; /* 图片宽度占满容器 */
+        height: 200px; /* 图片高度为200像素 */
+        object-fit: cover; /* 图片按比例缩放，覆盖容器 */
+        border-radius: 5px; /* 图片添加圆角效果 */
+    }
+    
+    .video-recommendation .video-item h3 {
+        font-size: 18px; /* 标题字体大小为18像素 */
+        margin-top: 10px; /* 上边距为10像素 */
+    }
+
+
+.search-box {
+  position: absolute;
+  top: 10px;/* 调整搜索框距离顶部的位置 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 40px;
+  background-color: rgba(255, 221, 225, 0.5); /* 设置背景颜色的透明度为50% */
+  border: 2px solid #ff8dc6; /* 使用少女粉的边框颜色 */
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin-top: 20px; /* 设置搜索框顶部的空隙大小 */
+}
+
+.search-box input[type="text"] {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.5); /* 设置背景颜色的透明度为50% */
+  background-image: none; /* 移除渐变背景图像 */
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+.search-box button {
+  background-color: #ff8dc6;
+  color: #fff;
+  border-radius: 20px;
+  transition: background-color 0.5s, color 0.5s;
+  border: none;
+  outline: none;
+  padding: 0;
+  width: 50px; /* 设置按钮宽度为50像素 */
+  height: 40px; /* 设置按钮高度为40像素 */
+  font-size: 0; /* 清空字体大小，使文本不可见 */
+  cursor: pointer;
+  position: relative;
+  animation-name: blink; /* 添加新的动画名称 */
+  animation-duration: 3s; /* 设置动画持续时间为1秒 */
+  animation-iteration-count: infinite; /* 设置动画无限循环 */
+}
+
+.search-box button::before {
+  content: "🔍"; /* 使用适当的表情符号 */
+  font-size: 24px; /* 设置图标大小 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes blink {
+  0% {
+    background-color: #ff8dc6; /* 初始背景颜色，和按钮背景颜色一致 */
+    color: #fff; /* 初始字体颜色，和按钮字体颜色一致 */
+  }
+  50% {
+    background-color: #fff; /* 中间背景颜色，使用白色 */
+    color: #ff8dc6; /* 中间字体颜色，使用少女粉 */
+  }
+  100% {
+    background-color: #ff8dc6; /* 结束背景颜色，和按钮背景颜色一致 */
+    color: #fff; /* 结束字体颜色，和按钮字体颜色一致 */
+  }
+}
+
+.search-box:hover button {
+  animation-play-state: running; /* 悬停时暂停动画播放 */
+}
+
+.search-box button:not(:hover) {
+  animation-play-state: paused; /* 非悬停时暂停动画播放 */
+}
+
+
+.logo-link {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 100px;
+  height: auto;
+  margin-right: 10px; /* 可根据需要调整图标与文本之间的间距 */
+}
+
+
+
+    footer {
+        background-color: #ffccea; /* 页脚背景色 */
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+
+</head>
+<body>
+    <header>
+         <img src="https://images.unsplash.com/photo-1688819092299-9a1c4f59279c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDEwfEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60" alt="Website Logo" class="logo">
+    <div class="search-box">
+        <input type="text" placeholder="猜你想搜...">
+        <button>搜索</button>
+    </div>
+
+      <a href="/" class="logo-link">
+    <img src="   " alt="Logo" class="logo-image">
+      </a>
+
+    </header>
+
+<nav>
+    <ul>
+        <li><a href="home-page.html">✨ 首页 ✨</a></li>
+        <li class="dropdown">
+            <a href="#">💖 目的地 💖</a>
+            <div class="dropdown-content">
+                <a href="亚洲.html">🌸 亚洲 🌸</a>
+                <a href="欧洲.html">🌼 欧洲 🌼</a>
+                <a href="北美洲.html">🌺 北美洲 🌺</a>
+                <a href="南美洲.html">🌷 南美洲 🌷</a>
+                <a href="大洋洲.html">🌹 大洋洲 🌹</a>
+                <a href="非洲.html">🌻 非洲 🌻</a>
+                <a href="南极洲.html">🌱 南极洲 🌱</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#">🌴 攻略 🌴</a>
+            <div class="dropdown-content">
+                <a href="旅行清单.html">✨ 旅行清单 ✨</a>
+                <a href="美食指南.html">🍔 美食指南 🍔</a>
+                <a href="购物推荐.html">💄 购物推荐 💄</a>
+                <a href="文化体验.html">🎭 文化体验 🎭</a>
+                <a href="浪漫约会.html">💑 浪漫约会 💑</a>
+                <a href="时尚潮流.html">👗 时尚潮流 👗</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#">📷 照片 📷</a>
+            <div class="dropdown-content">
+                <a href="风景.html">🌈 风景 🌈</a>
+                <a href="美食.html">🍩 美食 🍩</a>
+                <a href="人物.html">👯‍♀️ 人物 👯‍♀️</a>
+                <a href="纪念品.html">🎁 纪念品 🎁</a>
+                <a href="自拍.html">🤳 自拍 🤳</a>
+                <a href="夕阳.html">🌅 夕阳 🌅</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#">🎥 视频 🎥</a>
+            <div class="dropdown-content">
+                <a href="旅行记录.html">📹 旅行记录 📹</a>
+                <a href="美景分享.html">🌟 美景分享 🌟</a>
+                <a href="当地文化.html">🌍 当地文化 🌍</a>
+                <a href="搞笑短片.html">😄 搞笑短片 😄</a>
+                <a href="舞蹈视频.html">💃 舞蹈视频 💃</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#">📝 游记 📝</a>
+            <div class="dropdown-content">
+                <a href="亚洲之旅.html">🌸 亚洲之旅 🌸</a>
+                <a href="欧洲之旅.html">🌼 欧洲之旅 🌼</a>
+                <a href="北美洲之旅.html">🌺 北美洲之旅 🌺</a>
+                <a href="梦幻岛屿.html">🌷 梦幻岛屿 🌷</a>
+                <a href="冒险之旅.html">🌹 冒险之旅 🌹</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#">🛒 商城 🛒</a>
+            <div class="dropdown-content">
+                <a href="服饰.html">👚 服饰 👚</a>
+                <a href="美妆.html">💅 美妆 💅</a>
+                <a href="饰品.html">💍 饰品 💍</a>
+                <a href="家居.html">🏠 家居 🏠</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="personalcenter.html">👤 个人中心 👤</a>
+            <div class="dropdown-content">
+                <a href="personalcenter.html">👸 个人资料 👸</a>
+                <a href="personalcenter.html">📜 订单记录 📜</a>
+                <a href="personalcenter.html">🏠 收货地址 🏠</a>
+                <a href="personalcenter.html">💰 优惠券 💰</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#">💕 粉丝团 💕</a>
+            <div class="dropdown-content">
+                <a href="最新活动.html">🎉 最新活动 🎉</a>
+                <a href="会员特权.html">👑 会员特权 👑</a>
+                <a href="粉丝交流.html">💬 粉丝交流 💬</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#">💌 联系我们 💌</a>
+            <div class="dropdown-content">
+                <a href="客服邮箱.html">📧 客服邮箱 📧</a>
+                <a href="联系电话.html">📞 联系电话 📞</a>
+                <a href="在线客服.html">💬 在线客服 💬</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+
+
+
+    <div class="carousel">
+        <img src="https://images.unsplash.com/photo-1689423479298-5dc14a217fa3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDEyfDZzTVZqVExTa2VRfHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60" alt="Image 1" class="active">
+        <img src="https://images.unsplash.com/photo-1689101298752-886c970ff200?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDMzfDZzTVZqVExTa2VRfHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60" alt="Image 2">
+        <img src="https://images.unsplash.com/photo-1687027053771-76a0460d1c68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE3MHw2c01WalRMU2tlUXx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60" alt="Image 3">
+    </div>
+
+
+
+    <div class="video-recommendation">
+        <h2>🎥 推荐旅游视频 🎥</h2>
+        <p>根据您的喜好推荐以下旅行视频：</p>
+        <div class="video-container">
+            <div class="video-item">
+                <a href="#视频链接#">
+                    <img src="https://images.unsplash.com/photo-1689702095156-135bdeb260e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Video 1">
+                </a>
+                <h3>视频标题 1</h3>
+            </div>
+            <div class="video-item">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1689784730988-6cafd0821f8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Video 2">
+                </a>
+                <h3>视频标题 2</h3>
+            </div>
+            <div class="video-item">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1689702095156-135bdeb260e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Video 1">
+                </a>
+                <h3>视频标题 3</h3>
+            </div>
+            <div class="video-item">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1689702095156-135bdeb260e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Video 1">
+                </a>
+                <h3>视频标题 4</h3>
+            </div>
+            <div class="video-item">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1689702095156-135bdeb260e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Video 1">
+                </a>
+                <h3>视频标题 5</h3>
+            </div>
+            <div class="video-item">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1689702095156-135bdeb260e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Video 1">
+                </a>
+                <h3>视频标题 6</h3>
+            </div>
+            <div class="video-item">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1689702095156-135bdeb260e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Video 1">
+                </a>
+                <h3>视频标题 7</h3>
+            </div>
+            <div class="video-item">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1689702095156-135bdeb260e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Video 1">
+                </a>
+                <h3>视频标题 8</h3>
+            </div>
+            <!-- 添加更多视频 -->
+        </div>
+    </div>
+
+    <footer>
+        <p>版权所有 &copy; 2023 Meitanldtd💖</p>
+    </footer>
+
+<script>
+    // 当文档加载完成后执行函数
+    document.addEventListener("DOMContentLoaded", function() {
+        // 获取所有轮播图图片元素
+        var carouselImages = document.querySelectorAll('.carousel img');
+        // 当前显示图片的索引
+        var currentImageIndex = 0;
+
+        // 每隔3秒切换图片
+        setInterval(function() {
+            // 移除当前显示图片的CSS类 'active'
+            carouselImages[currentImageIndex].classList.remove('active');
+            // 计算下一张图片的索引
+            currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+            // 添加下一张图片的CSS类 'active'
+            carouselImages[currentImageIndex].classList.add('active');
+        }, 3000);
+    });
+
+
+</script>
+
+</body>
+</html>
